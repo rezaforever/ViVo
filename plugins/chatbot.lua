@@ -11,6 +11,12 @@ if matches[1] == "بای" then
             return answers[math.random(#answers)]
       end
 	  end
+	  if matches[1] == "spam" and is_sudo then
+      if msg.to.type == 'channel' or 'chat' then
+            local answers = {'spam','Spam'}
+            return answers[math.random(#answers)]
+      end
+	  end
 	  if matches[1] == "پسرم" and is_sudo then
       if msg.to.type == 'channel' or 'chat' then
             local answers = {'آخ جون بابایی کارم داره 😃','بله بابایی','جونم بابا'}
@@ -307,6 +313,8 @@ return {
 	"^سوال$",
 	"^جواب$",
 	"^تمام$",
+        "^پسرم$",
+        "^spam$",
 	"^👍$",
 	"^لایک$",
 	"^خبر$",
