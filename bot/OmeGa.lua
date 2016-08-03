@@ -239,7 +239,6 @@ function create_config( )
     "exp",
     "exp2",
     "gpreq",
-    "keep_calm",
     "lock_bot",
     "lock_forward",
     "savefiles",
@@ -247,8 +246,8 @@ function create_config( )
     "support",
     "text_to_st",
     "help_en",
-    "tosticker",
-    "tophoto",
+    "st",
+    "spam",
 	"supergroup",
 	"whitelist",
 	"msg_checks"
