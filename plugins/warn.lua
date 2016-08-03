@@ -14,9 +14,9 @@ local function warn_by_username(extra, success, result) -- /warn <@username>
   end
 ----------------------------------
   if is_momod2(msg.id, target) and not is_admin2(extra.fromid) then
-  return send_msg(receiver, 'You can/n't warn mod!', ok_cb, false) end
+  return send_msg(receiver, 'You can not warn mod!', ok_cb, false) end
 --endif--
-  if is_admin2(msg.id) then return send_msg(receiver, 'You can/n't warn admin!', ok_cb, false) end
+  if is_admin2(msg.id) then return send_msg(receiver, 'You can not warn admin!', ok_cb, false) end
 --endif--
   if value then
    if value == '1' then
@@ -61,7 +61,7 @@ local function warn_by_reply(extra, success, result) -- (on reply) /warn
   if is_momod2(msg.from.id, msg.to.id) and not is_admin2(extra.fromid) then
   return send_msg(receiver, 'You can/'t warn mod!', ok_cb, false) end
 --endif--
-  if is_admin2(msg.from.id) then return send_msg(receiver, 'You can/n't warn admin!', ok_cb, false) end
+  if is_admin2(msg.from.id) then return send_msg(receiver, 'You can not warn admin!', ok_cb, false) end
 --endif--
   if value then
    if value == '1' then
@@ -103,7 +103,7 @@ local function unwarn_by_username(extra, success, result) -- /unwarn <@username>
   redis:hdel(hash, msg.id, '0')
   text = 'User ('..msg.from.id..') warns removed\nNumber of warns : 0/4'
   else
-   text = 'This user does/n't have any warn'
+   text = 'This user does not have any warn'
   end
   send_msg(receiver, text, ok_cb, false)
   else
@@ -130,7 +130,7 @@ local function unwarn_by_reply(extra, success, result) -- (on reply) /unwarn
   redis:hdel(hash, msg.from.id, '0')
   text = 'User ('..msg.from.id..') warns removed\nNumber of warns : 0/4'
   else
-   text = 'This user does/n't have any warn'
+   text = 'This user does have any warn'
   end
   reply_msg(extra.Reply, text, ok_cb, false)
 end
