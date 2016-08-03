@@ -12,7 +12,7 @@ local msg = extra
       end
   end
 function run(msg, matches) 
-if matches = 'sms' then
+if matches == 'sms' then
 return
 end
   if msg.to.type == "channel" and msg.text then
