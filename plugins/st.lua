@@ -2,7 +2,7 @@ do
 local function todoc(msg, success, result)
   local receiver = get_receiver(msg)
   if success then
-    local file = 'photos/'..msg.from.id..'.png'
+    local file = 'data/photos/'..msg.from.id..'.png'
     print('File downloaded to:', result)
     os.rename(result, file)
     print('File moved to:', file)
@@ -16,7 +16,7 @@ end
 local function tophoto(msg, success, result)
   local receiver = get_receiver(msg)
   if success then
-    local file = 'photos/'..msg.from.id..'.jpg'
+    local file = 'data/photos/'..msg.from.id..'.jpg'
     print('File downloaded to:', result)
     os.rename(result, file)
     print('File moved to:', file)
@@ -30,7 +30,7 @@ end
 local function tosticker(msg, success, result)
   local receiver = get_receiver(msg)
   if success then
-    local file = 'stickers/'..msg.from.id..'.webp'
+    local file = 'data/stickers/'..msg.from.id..'.webp'
     print('File downloaded to:', result)
     os.rename(result, file)
     print('File moved to:', file)
@@ -44,7 +44,7 @@ end
 local function dtosticker(msg, success, result)
   local receiver = get_receiver(msg)
   if success then
-    local file = 'stickers/'..msg.from.id..'.webp'
+    local file = 'data/stickers/'..msg.from.id..'.webp'
     print('File downloaded to:', result)
     os.rename(result, file)
     print('File moved to:', file)
@@ -64,7 +64,7 @@ local function run(msg,matches)
         end
        end
     
-      if matches[1]:lower() == "photo" then
+      if matches[1]:lower() == "image" then
      redis:get("sticker:photo")  
         load_document(msg.reply_id, tophoto, msg)
     end
@@ -100,11 +100,15 @@ end
 return {
   patterns = {
  "^[#!/]([Ss]ticker)$",
+ "^([Ss]ticker)$",
  "%[(photo)%]",
  "^[#!/](file)$",
- "^[#!/](photo)$",
+ "^([Ff]ile)$",
+ "^[#!/](image)$",
+ "^([Ii]mage)$",
  "%[(document)%]",
   },
   run = run,
   }
   end
+  --@sudo_tm
