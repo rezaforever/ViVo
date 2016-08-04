@@ -129,15 +129,19 @@ local text = title..admin_num..user_num..kicked_num..channel_id..channel_usernam
 end
 
 --Get and output members of supergroup
-local function callback_who(cb_extra, success, result)
-local text = "Members for "..cb_extra.receiver
-local i = 1
-for k,v in pairsByKeys(result) do
-if not v.print_name then
-	name = " "
+local function callback_info(cb_extra, success, result)
+local admin_num = "🔘Admin count > "..result.admins_count.."\n"
+local user_num = "⚪️User count > "..result.participants_count.."\n"
+local kicked_num = "🔘 Kicked user count > "..result.kicked_count.."\n"
+local channel_id = "⚪️ GP ID > "..result.peer_id.."\n"
+local channel_name = "🔘 GP Name > "..result.print_name.."\n"
+if result.username then
+  channel_username = "Username > @"..result.username
 else
-	vname = v.print_name:gsub("‮", "")
-	name = vname:gsub("_", " ")
+  channel_username = ""
+end
+local text = admin_num..user_num..kicked_num..channel_id..channel_username..channel_name
+  send_photo2(cb_extra.receiver, "./data/photos/channel_photo_"..result.peer_id..".jpg", text, ok_cb, false)  
 end
 	if v.username then
 		username = " @"..v.username
