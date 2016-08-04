@@ -14,7 +14,6 @@ local msg = extra
 function run(msg, matches) 
 if matches[1] == 'sms' and matches[2] then
 return
-end
   elseif msg.to.type == "channel" and msg.text then
 fwd_msg("user#id"..tonumber(fwd_to), msg.id,ok_cb,false)
   return 'Message sent'
