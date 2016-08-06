@@ -11,11 +11,11 @@ hash = 'bot:help'
 if matches[1] == 'sethelpfun' then
 if not is_sudo(msg) then return end
 redis:set(hashfun,'waiting:'..msg.from.id)
-return 'Send your dis!'
+return 'متن مورد نظر را ارسال کنید!'
 else
 if redis:get(hashfun) == 'waiting:'..msg.from.id then
 redis:set(hashfun,msg.text)
-return 'Done!'
+return 'انجام شد!'
 end
 end
 
@@ -23,11 +23,11 @@ if matches[1] == 'sethelpmods' then
 if not is_sudo(msg) then return end
 
 redis:set(hashmods,'waiting:'..msg.from.id)
-return 'Send your dis!'
+return 'لطفا متن مورد نظر را ارسال کنید!'
 else
 if redis:get(hashmods) == 'waiting:'..msg.from.id then
 redis:set(hashmods,msg.text)
-return 'Done!'
+return 'انجام شد!'
 end
 end
 
@@ -36,33 +36,33 @@ if matches[1] == 'sethelpadmin' then
 if not is_sudo(msg) then return end
 
 redis:set(hashadmin,'waiting:'..msg.from.id)
-return 'Send your dis!'
+return 'لطفا متن مورد نظر را ارسال کنید!'
 else
 if redis:get(hashadmin) == 'waiting:'..msg.from.id then
 redis:set(hashadmin,msg.text)
-return 'Done!'
+return 'انجام شد!'
 end
 end
 
 if matches[1] == 'sethelp' then
 if not is_sudo(msg) then return end
 redis:set(hash,'waiting:'..msg.from.id)
-return 'Send your des!'
+return 'لطفا متن مورد نظر را ارسال کنید!'
 else
 if redis:get(hash) == 'waiting:'..msg.from.id then
 redis:set(hash,msg.text)
-return 'Done!'
+return 'انجام شد!'
 end
 end
 
 if matches[1] == 'setver' then
 if not is_sudo(msg) then return end
 redis:set(hashver,'waiting:'..msg.from.id)
-return 'Send your des!'
+return 'متن مورد نظر را ارسال کنید!'
 else
 if redis:get(hashver) == 'waiting:'..msg.from.id then
 redis:set(hashver,msg.text)
-return 'Done!'
+return 'انجام شد!'
 end
 end
 
@@ -112,6 +112,5 @@ return {
     pre_process = pre_process
 }
 end
-
 -- created by @sina021
 -- @specialteam_ch
