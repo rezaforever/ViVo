@@ -9,7 +9,7 @@ local function history(extra, suc, result)
   end
 end
 local function run(msg, matches)
-  if matches[1] == 'clean' and is_owner(msg) then
+  if matches[1] == 'rem' and is_owner(msg) then
     if msg.to.type == 'channel' then
       if tonumber(matches[2]) > 1000000000 or tonumber(matches[2]) < 1 then
         return "Please choose more than 1"
@@ -23,7 +23,7 @@ local function run(msg, matches)
   end
    local x = matches[2]
   local t = x:gsub('x','1000000000')
-  if matches[1] == "clean" and "x" and is_owner then
+  if matches[1] == "rem" and "x" and is_owner then
  if msg.to.type == 'channel' then
 return t
 end
@@ -31,7 +31,7 @@ end
 
 return {
     patterns = {
-        '^[!/#](clean) (%d*)$'
+        '^[!/#](rem) (%d*)$'
     },
     run = run
 }
