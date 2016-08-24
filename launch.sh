@@ -1,7 +1,5 @@
---by @Hextor_ch
-
 #!/usr/bin/env bash
-
+# fix crash server by mustafa ip( @HackeD_o )
 THIS_DIR=$(cd $(dirname $0); pwd)
 cd $THIS_DIR
 
@@ -60,6 +58,21 @@ install_rocks() {
     then echo "Error. Exiting."; exit $RET;
   fi
 
+  ./.luarocks/bin/luarocks install luafilesystem
+  RET=$?; if [ $RET -ne 0 ];
+    then echo "Error. Exiting."; exit $RET;
+  fi
+
+  ./.luarocks/bin/luarocks install lub
+  RET=$?; if [ $RET -ne 0 ];
+    then echo "Error. Exiting."; exit $RET;
+  fi
+
+  ./.luarocks/bin/luarocks install luaexpat
+  RET=$?; if [ $RET -ne 0 ];
+    then echo "Error. Exiting."; exit $RET;
+  fi  
+  
   ./.luarocks/bin/luarocks install xml
   RET=$?; if [ $RET -ne 0 ];
     then echo "Error. Exiting."; exit $RET;
@@ -69,8 +82,23 @@ install_rocks() {
   RET=$?; if [ $RET -ne 0 ];
     then echo "Error. Exiting."; exit $RET;
   fi
-
+  
   ./.luarocks/bin/luarocks install serpent
+  RET=$?; if [ $RET -ne 0 ];
+    then echo "Error. Exiting."; exit $RET;
+  fi
+  
+  ./.luarocks/bin/luarocks install lunitx
+  RET=$?; if [ $RET -ne 0 ];
+    then echo "Error. Exiting."; exit $RET;
+  fi
+  
+  ./.luarocks/bin/luarocks install set
+  RET=$?; if [ $RET -ne 0 ];
+    then echo "Error. Exiting."; exit $RET;
+  fi
+  
+  ./.luarocks/bin/luarocks install htmlparser
   RET=$?; if [ $RET -ne 0 ];
     then echo "Error. Exiting."; exit $RET;
   fi
@@ -79,16 +107,15 @@ install_rocks() {
 install() {
   git pull
   git submodule update --init --recursive
-  patch -i "patches/disable-python-and-libjansson.patch" -p 0 --batch --forward
-  RET=$?;
-
-  cd tg
-  if [ $RET -ne 0 ]; then
-    autoconf -i
-  fi
-  ./configure && make
-
+  cd tg && ./configure && make
+  
   RET=$?; if [ $RET -ne 0 ]; then
+    echo "Trying without Python...";
+    ./configure --disable-python && make
+    RET=$?
+  fi
+  
+  if [ $RET -ne 0 ]; then
     echo "Error. Exiting."; exit $RET;
   fi
   cd ..
@@ -106,17 +133,20 @@ else
     echo "Run $0 install"
     exit 1
   fi
-
+  
+   chmod 777 launch.sh
+   
   if [ ! -f ./tg/bin/telegram-cli ]; then
     echo "tg binary not found"
     echo "Run $0 install"
     exit 1
   fi
-  while true; do
-   rm -r ../.telegram-cli/state
-   ./tg/bin/telegram-cli -k ./tg/tg-server.pub -s ./bot/OmeGa.lua -l 1 -E $@
-   sleep 3
-  done
+ 
+ rm -r ~/.telegram-cli/state
+ 
+ echo "Anti CRASH server is : ON"
+ 
+  ./tg/bin/telegram-cli -k ./tg/tg-server.pub -s ./bot/OmeGa.lua -l 1 -E
 fi
 
---by @Hextor_ch
+#FIX CRASH SERVER BY MUSTAFA IP
