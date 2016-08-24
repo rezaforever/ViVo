@@ -7,9 +7,7 @@ local function run(msg, matches)
     end
   end
 return {
-  description = "my first plu"
-  usage = "chat"
-  patterns = {
+    patterns = {
 "^پسرم$",
       },
  run = run
