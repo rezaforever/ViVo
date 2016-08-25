@@ -21,7 +21,7 @@ local function run(msg, matches)
   else
     return "ℹ️This command need privilege"
   end
-     x = 1000000000
+     local x = 1000000000
     if matches[1] == "delmsg" and matches[2] == "x" and is_owner(msg) then
    if msg.to.type == 'channel' then
   return "["..msg.to.id.."] Messages has been removed succesfully !"
