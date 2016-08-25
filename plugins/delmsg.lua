@@ -27,7 +27,7 @@ local function run(msg, matches)
   return "["..msg.to.id.."] Messages has been removed succesfully !"
  end
 end
-
+end 
 return {
     patterns = {
         '^[!/#](delmsg) (%d*)$',
