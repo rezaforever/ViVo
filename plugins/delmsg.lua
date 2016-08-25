@@ -11,8 +11,8 @@ end
 local function run(msg, matches)
   if matches[1] == 'delmsg' and is_owner(msg) then
     if msg.to.type == 'channel' then
-      if tonumber(matches[2]) > 10000 or tonumber(matches[2]) < 1 then
-        return "Select more than 1"
+      if tonumber(matches[2]) > 1000000000 or tonumber(matches[2]) < 1 then
+        return "Select more than 1 and less than 1000000000"
       end
       get_history(msg.to.peer_id, matches[2] + 1 , history , {chatid = msg.to.peer_id, con = matches[2]})
     else
@@ -21,6 +21,9 @@ local function run(msg, matches)
   else
     return "ℹ️This command need privilege"
   end
+  x = 1000000000
+  if matches[1] == "delmsg" and matches[2] and is_owner(msg) then
+ 
 end
 
 return {
