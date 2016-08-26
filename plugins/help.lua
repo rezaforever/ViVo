@@ -1,5 +1,5 @@
 local function run(msg, matches)
-local help = "✅OmeGaShield common users commands💠
+local help = [[✅OmeGaShield common users commands💠
 !kickme
 Will kick user
 
@@ -65,8 +65,8 @@ Fun commands :
 ➖➖➖➖➖➖➖➖➖
 Writed By @RezaMnk
 channel : @OmeGaTeam
-Bot : @OmeGaShield"
-local helpfun = "✅OmeGaShield Fun commands💠
+Bot : @OmeGaShield ]]
+local helpfun = [[ ✅OmeGaShield Fun commands💠
 !keepcalm <text> (background color) (text color) (crown color) (size)
 will give a keep calm sticker
 You can use /keep to see persian help‼
@@ -95,16 +95,16 @@ You can use /love to see persian help‼
 ➖➖➖➖➖➖➖➖➖
 Writed By : @RezaMnk
 channel : @OmeGaTeam
-Bot : @OmeGaShield 
-local love = "با دستور
+Bot : @OmeGaShield ]]
+local love = [[ با دستور
 /love (متن) 
 استیکر لاو تحویل بگیرید.
 شما میتوانید در استیکر خود از 
 <‌3 = ❤
 یا
 :‌) = 🙂
-استفاده کنید"
-local keep = "با دستور 
+استفاده کنید ]]
+local keep = [[ با دستور 
 /keepcalm (متن) (رنگ زمینه) (رنگ متن) (رنگ تاج) (سایز عکس)
 استیکر کیپ کالم تحویل بگیرید.
 شما میتوانید در استیکر خود از
@@ -115,8 +115,8 @@ local keep = "با دستور
 200
 300
 400
-500"
-local helpmod = "✅OmeGaShield mod users commands💠
+500 ]]
+local helpmod = [[ ✅OmeGaShield mod users commands💠
 !kick [username|id]
 You can also do it by reply
 
@@ -223,9 +223,9 @@ will warn
 ➖➖➖➖➖➖➖➖➖
 owner : coming soon ...
 
- Writed By : @RezaMnk
+Writed By : @RezaMnk
 channel : @OmeGaTeam
-Bot : @OmeGaShield"
+Bot : @OmeGaShield ]]
    if matches[1] == "help" then
   return help
  end
@@ -238,6 +238,12 @@ Bot : @OmeGaShield"
    elseif matches[1] == "help me" and is_owner(msg) then
   return helpowner
  end
+   if matches[1] == "keep" then
+  return keep
+ end
+   if matches[1] == "love" then
+  return love
+ end
 end
 
 return {
@@ -245,3 +251,8 @@ return {
    "^[!/#](help)$",
    "^[!/#](help fun)$",
    "^[!/#](help me)$",
+   "^[!/#](love)$",
+   "^[!/#](keep)$",
+   },
+  run = run
+}
