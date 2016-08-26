@@ -235,7 +235,7 @@ Bot : @OmeGaShield ]]
    if matches[1] == "help me" and is_momod(msg) then
   return helpmod
  end
-   elseif matches[1] == "help me" and is_owner(msg) then
+   if matches[1] == "help me" and is_owner(msg) then
   return helpowner
  end
    if matches[1] == "keep" then
