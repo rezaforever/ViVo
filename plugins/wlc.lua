@@ -8,7 +8,7 @@ local group_welcome = redis:hget(hash,'welcome')
 if matches[1] == 'delwlc' and not matches[2] and is_owner(msg) then 
     
    redis:hdel(hash,'welcome')
-        return 'Wlc deleted'
+        return '🌟 Wlc deleted'
 end
 
 local url , res = http.request('http://api.gpmod.ir/time/')
@@ -17,7 +17,7 @@ local jdat = json:decode(url)
 
 if matches[1] == 'setwlc' and is_owner(msg) then
 redis:hset(hash,'welcome',matches[2])
-        return 'Wlc set to : ✋\n'..matches[2]
+        return '🌟 Wlc set to : ✋\n'..matches[2]
 end
 
 if matches[1] == 'chat_add_user' or 'chat_add_user_link' or 'channel_invite' and msg.service then
