@@ -1,4 +1,3 @@
-
 do
 
 local function pre_process(msg)
@@ -24,11 +23,11 @@ local function run(msg, matches)
             
                     local hash = 'mate:'..msg.to.id
                     redis:set(hash, true)
-                    return ""
+                    return "🌟 Forward has been locked ‼"
   elseif is_momod(msg) and matches[1] == 'unlock' then
                     local hash = 'mate:'..msg.to.id
                     redis:del(hash)
-                    return ""
+                    return "🌟 Forward has been unlocked ‼"
 end
 
 end
