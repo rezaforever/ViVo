@@ -1,5 +1,5 @@
  	local function run(msg)
-	if msg.text == "Hi" then
+	if msg.text == "hi" or msg.text == "Hi" then
 	return "Hello"
         end
 	if msg.text == "خوبم" then
@@ -20,8 +20,8 @@
 	if msg.text == "کسی هست؟" then
 	return "بله من هستم"
 	end
-	if msg.text == "omega" then
-	return "Im here 💪"
+	if msg.text == "omega" or msg.text == "Omega" then
+	return "جان ؟"
 	end
 	if msg.text == "!teleseed" then
 	return "wtf ? 😐"
@@ -41,13 +41,13 @@
 	if msg.text == "بات تا کی آنلاینه" then
 	return "از ۹ تا ۲۳"
 	end
-	if msg.text == "@OmeGaTG" then
+	if msg.text == "@OmeGaShield" then
 	return "جونم ، کاری داشتی؟"
 	end
-	if msg.text == "@Omegatg" then
+	if msg.text == "@Omegashield" then
 	return "بله"
 	end
-	if msg.text == "@omegatg" then
+	if msg.text == "@omegashield" then
 	return "بله"
 	end
      end
@@ -57,6 +57,7 @@
 	usage = "chat with robot",
 	patterns = {
 	"^Hi$",
+	"^hi$",
 	"^خوبم$",
 	"^خوبم تو خوبی$",
 	"^خوبم تو خوبی؟$",
@@ -65,14 +66,15 @@
 	"^کسی هست$",
 	"^کسی هست؟$",
 	"^omega$",
+	"^Omega$",
 	"^!teleseed$",
 	"^/teleseed$",
 	"^تا کی آنلاینه ؟$",
 	"^بات تا کی آنلاینه؟$",
 	"^بات تا کی آنلاینه$",
-	"^@OmeGaTG$",
-	"^@Omegatg$",
-	"^@omegatg$",
+	"^@OmeGaShield$",
+	"^@Omegashield$",
+	"^@omegashield$",
 	},
 	run = run,
 	--privileged = true,
