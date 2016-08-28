@@ -1,5 +1,3 @@
---by @Hextor_ch
-
 #!/usr/bin/env bash
 
 THIS_DIR=$(cd $(dirname $0); pwd)
@@ -118,5 +116,3 @@ else
    sleep 3
   done
 fi
-
---by @Hextor_ch
