@@ -26,7 +26,7 @@ do
   local function pre_process(msg)
           --If sender is a moderator then re-enable the channel
           if is_momod(msg) then
-            if msg.text == '!channel enable' then
+            if msg.text == 'bot +' then
               enable_channel(get_receiver(msg))
             end
           end
@@ -38,11 +38,11 @@ do
 
   local function run(msg, matches)
           -- Enable a channel
-          if matches[1] == 'enable' then
+          if matches[1] == '+' then
                   return enable_channel(get_receiver(msg))
           end
           -- Disable a channel
-          if matches[1] == 'disable' then
+          if matches[1] == '-' then
             if not _config.disabled_channels then
                     _config.disabled_channels = {}
             end
@@ -61,8 +61,8 @@ do
       },
     },
           patterns = {
-                  "^!channel (enable)$",
-                  "^!channel (disable)$"
+                  "^[!/#]bot (+)$",
+                  "^[!/#]bot (-)$"
     },
           run = run,
     moderated = true,
