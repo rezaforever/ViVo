@@ -1,40 +1,5 @@
-#!/bin/bash
-# =====================================================================================================
-# Copyright (C) steady.sh v1.2 2016 iicc (@iicc1)
-# =====================================================================================================
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
-# this program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-# GNU General Public License for more details.
-# You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
-# =======================================================================================================
-# It depends on Tmux https://github.com/tmux/tmux which is BSD-licensed
-# and Screen https://www.gnu.org/software/screen GNU-licensed.
-# =======================================================================================================
-# This script is intended to control the state of a telegram-cli telegram bot running in background.
-# The idea is to get the bot fully operative all the time without any supervision by the user.
-# It should be able to recover the telegram bot in any case telegram-cli crashes, freezes or whatever.
-# This script works by tracing ctxt swithes value in kernel procces at a $RELOADTIME 
-# So it can detect any kind of kernel interruption with the procces and reload the bot.
-#
-#--------------------------------------------------
-#--      ____  ____ _____                        --
-#--     |    \|  _ )_   _|___ ____   __  __      --
-#--     | |_  )  _ \ | |/ ·__|  _ \_|  \/  |     --
-#--     |____/|____/ |_|\____/\_____|_/\/\_|     --
-#--                                              --
-#--------------------------------------------------
-#--                                              --
-#--       Developers: @Josepdal & @MaSkAoS       --
-#--     Support: @Skneos,  @iicc1 & @serx666     --
-#--                                              --
-#--------------------------------------------------
+--by @Hextor_ch
 
-
-# Some script variables
 OK=0
 BAD=0
 NONVOLUNTARY=1
@@ -42,8 +7,8 @@ NONVOLUNTARYCHECK=0
 VOLUNTARY=1
 VOLUNTARYCHECK=0
 I=1
-BOT=OmeGa.lua  # You can put here other bots. Also you can change it to run more than one bot in the same server.
-RELOADTIME=10  # Time between checking cpu calls of the cli process. Set the value high if your bot does not receive lots of messages.
+BOT = OmeGa 
+RELOADTIME = 15
 
 
 function tmux_mode {
@@ -93,13 +58,11 @@ fi
 echo -e "$f2 $BOT FOUND IN YOUR HOME DIRECTORY$rst"
 sleep 0.5
 
-
-echo ""
-echo -e "\033[38;5;208m      ____  ____ _____                        \033[0;00m"
-echo -e "\033[38;5;208m     |    \|  _ )_   _|___ ____   __  __      \033[0;00m"
-echo -e "\033[38;5;208m     | |_  )  _ \ | |/ .__|  _ \_|  \/  |     \033[0;00m"
-echo -e "\033[38;5;208m     |____/|____/ |_|\____/\_____|_/\/\_|     \033[0;00m"
-echo -e "\033[38;5;208m                                              \033[0;00m"
+   echo ""                _   _ _______  _______ ___  ____  
+echo -e "\033[38;5;208m  | | | | ____\ \/ /_   _/ _ \|  _ \          \033[0;00m"
+echo -e "\033[38;5;208m  | |_| |  _|  \  /  | || | | | |_) |         \033[0;00m"
+echo -e "\033[38;5;208m  |  _  | |___ /  \  | || |_| |  _ <          \033[0;00m"
+echo -e "\033[38;5;208m  |_| |_|_____/_/\_\ |_| \___/|_| \_\         \033[0;00m"
 
 sleep 1.5
 echo -e "$bld$f4 CHECKING PROCESSES...$rst"
@@ -246,12 +209,12 @@ echo -e "$f2 $BOT FOUND IN YOUR HOME DIRECTORY$rst"
 sleep 0.5
 
 
-echo ""
-echo -e "\033[38;5;208m      ____  ____ _____                        \033[0;00m"
-echo -e "\033[38;5;208m     |    \|  _ )_   _|___ ____   __  __      \033[0;00m"
-echo -e "\033[38;5;208m     | |_  )  _ \ | |/ .__|  _ \_|  \/  |     \033[0;00m"
-echo -e "\033[38;5;208m     |____/|____/ |_|\____/\_____|_/\/\_|     \033[0;00m"
-echo -e "\033[38;5;208m                                              \033[0;00m"
+   echo ""                _   _ _______  _______ ___  ____  
+echo -e "\033[38;5;208m  | | | | ____\ \/ /_   _/ _ \|  _ \          \033[0;00m"
+echo -e "\033[38;5;208m  | |_| |  _|  \  /  | || | | | |_) |         \033[0;00m"
+echo -e "\033[38;5;208m  |  _  | |___ /  \  | || |_| |  _ <          \033[0;00m"
+echo -e "\033[38;5;208m  |_| |_|_____/_/\_\ |_| \___/|_| \_\         \033[0;00m"
+
 
 # Starting preliminar setup
 sleep 1.5
@@ -517,12 +480,12 @@ while getopts ":tsTSih" opt; do
 	echo "steady.sh bash script v1.2 iicc 2016 DBTeam" >&2
 	echo ""
 	echo -e "\e[0m"
-echo -e "\033[38;5;208m      ____  ____ _____                        \033[0;00m"
-echo -e "\033[38;5;208m     |    \|  _ )_   _|___ ____   __  __      \033[0;00m"
-echo -e "\033[38;5;208m     | |_  )  _ \ | |/ .__|  _ \_|  \/  |     \033[0;00m"
-echo -e "\033[38;5;208m     |____/|____/ |_|\____/\_____|_/\/\_|     \033[0;00m"
-echo -e "\033[38;5;208m                                              \033[0;00m"	
+echo -e "\033[38;5;208m  | | | | ____\ \/ /_   _/ _ \|  _ \          \033[0;00m"
+echo -e "\033[38;5;208m  | |_| |  _|  \  /  | || | | | |_) |         \033[0;00m"
+echo -e "\033[38;5;208m  |  _  | |___ /  \  | || |_| |  _ <          \033[0;00m"
+echo -e "\033[38;5;208m  |_| |_|_____/_/\_\ |_| \___/|_| \_\         \033[0;00m"
 echo ""
+
 	exit 1
       ;;
 	h)
@@ -564,3 +527,7 @@ echo ""
   esac
 done
 
+
+
+
+--by @Hextor_ch
