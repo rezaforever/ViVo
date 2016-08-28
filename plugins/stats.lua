@@ -91,10 +91,10 @@ local function bot_stats()
   return text
 end
 local function run(msg, matches)
-  if matches[1]:lower() == 'omegatg' then -- Put everything you like :)
+  if matches[1]:lower() == 'omegashield' then -- Put everything you like :)
     local about = _config.about_text
     local name = user_print_name(msg.from)
-    savelog(msg.to.id, name.." ["..msg.from.id.."] used /vivo ")
+    savelog(msg.to.id, name.." ["..msg.from.id.."] used /omegashield ")
     return about
   end 
   if matches[1]:lower() == "statslist" then
@@ -121,7 +121,7 @@ local function run(msg, matches)
         return
       end
     end
-    if matches[2] == "omegatg" then -- Put everything you like :)
+    if matches[2] == "omegashield" then -- Put everything you like :)
       if not is_admin1(msg) then
         return "For admins only !"
       else
@@ -144,7 +144,7 @@ return {
     "^[#!/]([Ss]tatslist)$",
     "^[#!/]([Ss]tats) (group) (%d+)",
     "^[#!/]([Ss]tats) (vivo)",
-	"^[#!/@]([Oo]me[Gg]a[Tt][Gg])"
+	"^[#!/@]([Oo]me[Gg]a[Ss]hield)"
     }, 
   run = run
 }
