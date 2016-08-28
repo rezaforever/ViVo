@@ -237,7 +237,6 @@ function create_config( )
     "feedback",
     "filter",
     "exp",
-    "exp2",
     "gpreq",
     "lock_bot",
     "lock_forward",
@@ -254,16 +253,17 @@ function create_config( )
     },
     sudo_users = {235707882,242893546},--Sudo users
     moderation = {data = 'data/moderation.json'},
-    about_text = [[🎩 OmeGa v 2 ✅
+    about_text = [[🎩 OmeGaShield v 2 ✅
 An antisapm lua bot based on Telegram
 Bot Id ✌
-@OmeGaTg
+@OmeGaShield
 Sudo Id 🙇
 @RezaMnk
+@SepehrHN
 Help commands :
 ➖/help common help💠
-➖/helpmods mods help💠
-➖/helpfun fun help💠
+➖/help me mods help💠
+➖/help fun fun help💠
 ]],
     help_text_realm = [[
 Realm Commands:
