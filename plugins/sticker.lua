@@ -14,7 +14,7 @@ end
 return {
 
   patterns = {
-   "^[/!#]([Ss]ticker) (.*) (.*) (.*)$",
+   "^[/!#]([Ss]ticker) (.*) : (.*) : (.*)$",
   },
   run = run
 }
