@@ -18,11 +18,13 @@ local function run(msg)
   if msg.service and msg.action.type == 'chat_add_user' then
     local data = load_data(_config.moderation.data)
     if not data[tostring(msg.to.id)] then
+    if not is_sudo then
       print "😒 You Are Silly , Bye 👋"
       chat_del_user('chat#id'..msg.to.id, 'user#id'..our_id, callback, false)
     end
+   end
   end
-end
+ end
 
 return {
   description = "Kicking ourself (bot) from unmanaged groups.",
