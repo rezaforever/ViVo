@@ -1,19 +1,16 @@
 local function run(msg, matches)
-  local text = [[<a href="['..matches[2]..']">'..matches[1]..'</a>]]
-  local b = 1
 
-  while b ~= 0 do
-    text = text:trim()
-    text,b = text:gsub('^-+','')
-  end
-  return text
+local link = matches[3]
+local text = matches[2]
+local message = [[ <a href="['..link..']">'..text.."</a> ]]
+if matches[1] == "&" and matches[2] and matches[3] then
+return message
+end
 end
 
 return {
-  description = "Simplest plugin ever!",
-  usage = "!echo [whatever]: echoes the msg",
-  patterns = {
-    "^-+(.+) (.+)$"
-  }, 
-  run = run 
+   patterns = {
+ "^&+(.+) (.+)$",
+},
+  run = run
 }
