@@ -1,14 +1,19 @@
-local function run(msg,matches)
+local function run(msg, matches)
+  local text = [[<a href="['..matches[2]..']">'..matches[1]..'</a>]]
+  local b = 1
 
-local link = [[ <a href="['..matches[3]..']">'..matches[2]..'</a>]]
-if matches[1] == "-" then
-return link 
-end
+  while b ~= 0 do
+    text = text:trim()
+    text,b = text:gsub('^-+','')
+  end
+  return text
 end
 
 return {
-patterns = {
- "^-(.*) (.*)$",
-},
- run = run
+  description = "Simplest plugin ever!",
+  usage = "!echo [whatever]: echoes the msg",
+  patterns = {
+    "^-+(.+) (.+)$"
+  }, 
+  run = run 
 }
