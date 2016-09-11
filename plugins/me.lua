@@ -36,22 +36,4 @@ return {
     run = alirezapt,
     
 }
-
-end
---------------☆☆☆☆☆☆☆☆☆☆☆--------------
-do
-
-function run(msg, matches)
-    if matches[1] == 'me' then
-  return "Gp Id : "..msg.from.id.."\nGp name : "..msg.to.title.."\nYour name : "..(msg.from.first_name or '').."\nFirstname : "..(msg.from.first_name or '').."\nLastname : "..(msg.from.last_name or '').."\nYour Id : "..msg.from.id.."\nYour username : @"..(msg.from.username or '').."\nYour Rank sticker 👇(maybe it comes faster , you can see last message[sticker])"
-end
-return { 
-    patterns = { 
-        "^[#!/](me)$"
-    },
-    run = run
-    
-}
-
-end
 end
