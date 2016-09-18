@@ -255,7 +255,7 @@ local function lock_group_bot(msg, data, target)
   end
 end
 
-local function unlock_group_fwd(msg, data, target)
+local function unlock_group_bot(msg, data, target)
   if not is_momod(msg) then
     return
   end
@@ -768,7 +768,7 @@ end
  end
  
   local settings = data[tostring(target)]['settings']
-  local text = "Ω🇮🇷 OmeGaShield Supergroup settings and security :\nΩ Lock links 🇮🇷: "..settings.lock_link.."\nΩ Lock flood 🇮🇷: "..settings.flood.."\nΩ Flood sensitivity 🇮🇷: "..NUM_MSG_MAX.."\nΩ Lock spam 🇮🇷: "..settings.lock_spam.."\nΩ Lock English 🇮🇷: "..settings.lock_english.."\nΩ Lock commands(Do not respond to members) 🇮🇷: "..cmd.."\nLock badwords 🇮🇷: "..settings.lock_fosh.."\nΩ Lock tag(@#) 🇮🇷: "..settings.lock_tag.."\nΩ Lock Member 🇮🇷: "..settings.lock_member.."\nΩ Lock RTL 🇮🇷: "..settings.lock_rtl.."\nΩ Lock Tgservice 🇮🇷: "..settings.lock_tgservice.."\nΩ Lock sticker 🇮🇷: "..settings.lock_sticker.."\nΩ Lock fwd 🇮🇷: "..settings.lock_fwd.."\nΩ Public 🇮🇷: "..settings.public.."\nΩ Expire time 🇮🇷: "..expire.."\nΩ Strict settings(hardly securiy) 🇮🇷: "..settings.strict.."\nJoin us @OmeGaTeam\nBot : @OmeGaShield\nWriter : @RezaMnk"
+  local text = [[Ω🇮🇷 OmeGaShield Supergroup settings and security :\nΩ Lock links 🇮🇷: "..settings.lock_link.."\nΩ Lock flood 🇮🇷: "..settings.flood.."\nΩ Flood sensitivity 🇮🇷: "..NUM_MSG_MAX.."\nΩ Lock spam 🇮🇷: "..settings.lock_spam.."\nΩ Lock English 🇮🇷: "..settings.lock_english.."\nΩ Lock commands(Do not respond to members) 🇮🇷: "..cmd.."\nLock badwords 🇮🇷: "..settings.lock_fosh.."\nΩ Lock tag(@#) 🇮🇷: "..settings.lock_tag.."\nΩ Lock Member 🇮🇷: "..settings.lock_member.."\nΩ Lock RTL 🇮🇷: "..settings.lock_rtl.."\nΩ Lock Tgservice 🇮🇷: "..settings.lock_tgservice.."\nΩ Lock sticker 🇮🇷: "..settings.lock_sticker.."\nΩ Lock fwd 🇮🇷: "..settings.lock_fwd.."\nΩ Public 🇮🇷: "..settings.public.."\nΩ Expire time 🇮🇷: "..expire.."\nΩ Strict settings(hardly securiy) 🇮🇷: "..settings.strict.."\nJoin us @OmeGaTeam\nBot : @OmeGaShield\nWriter : @RezaMnk]]
   return text
 end
 
