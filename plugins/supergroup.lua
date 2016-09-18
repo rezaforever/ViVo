@@ -768,7 +768,7 @@ end
  end
  
   local settings = data[tostring(target)]['settings']
-  local text = [[Ω🇮🇷 OmeGaShield Supergroup settings and security :\nΩ Lock links 🇮🇷: "..settings.lock_link.."\nΩ Lock flood 🇮🇷: "..settings.flood.."\nΩ Flood sensitivity 🇮🇷: "..NUM_MSG_MAX.."\nΩ Lock spam 🇮🇷: "..settings.lock_spam.."\nΩ Lock English 🇮🇷: "..settings.lock_english.."\nΩ Lock commands(Do not respond to members) 🇮🇷: "..cmd.."\nLock badwords 🇮🇷: "..settings.lock_fosh.."\nΩ Lock tag(@#) 🇮🇷: "..settings.lock_tag.."\nΩ Lock Member 🇮🇷: "..settings.lock_member.."\nΩ Lock RTL 🇮🇷: "..settings.lock_rtl.."\nΩ Lock Tgservice 🇮🇷: "..settings.lock_tgservice.."\nΩ Lock sticker 🇮🇷: "..settings.lock_sticker.."\nΩ Lock fwd 🇮🇷: "..settings.lock_fwd.."\nΩ Public 🇮🇷: "..settings.public.."\nΩ Expire time 🇮🇷: "..expire.."\nΩ Strict settings(hardly securiy) 🇮🇷: "..settings.strict.."\nJoin us @OmeGaTeam\nBot : @OmeGaShield\nWriter : @RezaMnk]]
+  local text = "<b>Ω🇮🇷 OmeGaShield Supergroup settings and security :\nΩ Lock links 🇮🇷: "..settings.lock_link.."\nΩ Lock flood 🇮🇷: "..settings.flood.."\nΩ Flood sensitivity 🇮🇷: "..NUM_MSG_MAX.."\nΩ Lock spam 🇮🇷: "..settings.lock_spam.."\nΩ Lock English 🇮🇷: "..settings.lock_english.."\nΩ Lock commands(Do not respond to members) 🇮🇷: "..cmd.."\nLock badwords 🇮🇷: "..settings.lock_fosh.."\nΩ Lock tag(@#) 🇮🇷: "..settings.lock_tag.."\nΩ Lock Member 🇮🇷: "..settings.lock_member.."\nΩ Lock RTL 🇮🇷: "..settings.lock_rtl.."\nΩ Lock Tgservice 🇮🇷: "..settings.lock_tgservice.."\nΩ Lock Bots 🇮🇷: "..settings.lock_bot.."\nΩ Lock sticker 🇮🇷: "..settings.lock_sticker.."\nΩ Lock fwd 🇮🇷: "..settings.lock_fwd.."\nΩ Public 🇮🇷: "..settings.public.."\nΩ Expire time 🇮🇷: "..expire.."\nΩ Strict settings(hardly securiy) 🇮🇷: "..settings.strict.."\nJoin us @OmeGaTeam\nBot : @OmeGaShield\nWriter : @RezaMnk</b>"
   return text
 end
 
@@ -1883,6 +1883,10 @@ local function run(msg, matches)
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked tag ")
 				return lock_group_tag(msg, data, target)
 			end
+			if matches[2] == 'bots' then
+				savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked bots ")
+				return lock_group_bot(msg, data, target)
+			end
 			if matches[2] == 'english' then
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked english ")
 				return lock_group_english(msg, data, target)
@@ -1946,6 +1950,10 @@ local function run(msg, matches)
 			if matches[2] == 'tag' then
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked tag ")
 				return unlock_group_tag(msg, data, target)
+			end
+			if matches[2] == 'bots' then
+				savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked bots ")
+				return unlock_group_bot(msg, data, target)
 			end
 			if matches[2] == 'cmd' then
 				savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked cmd ")
