@@ -25,8 +25,6 @@ local function check_member_super(cb_extra, success, result)
 		  lock_sticker = 'no',
 		  member = 'no',
 		  public = 'no',
-		  lock_tag = 'no',
-		  lock_english = 'no',
 		  lock_rtl = 'no',
 		  lock_tgservice = 'no',
 		  lock_contacts = 'no',
@@ -42,7 +40,7 @@ local function check_member_super(cb_extra, success, result)
       data[tostring(groups)][tostring(msg.to.id)] = msg.to.id
       save_data(_config.moderation.data, data)
 	  local text = '<b>SuperGroup has been added!</b>'
-      return reply_msg(msg.id, text, ok_cb, false)
+      return text
     end
   end
 end
@@ -750,6 +748,11 @@ end
 			data[tostring(target)]['settings']['lock_fwd'] = 'no'
 		end
 	end
+	if data[tostring(target)]['settings'] then
+		if not data[tostring(target)]['settings']['lock_bot'] then
+			data[tostring(target)]['settings']['lock_bot'] = 'no'
+		end
+	end
 	local cmdlock = redis:get('cmdlock:'..msg.to.id)
    local cmd = ''
   if not cmdlock then
@@ -768,8 +771,7 @@ end
  end
  
   local settings = data[tostring(target)]['settings']
-  local text = "<b>Ω🇮🇷 OmeGaShield Supergroup settings and security :\nΩ Lock links 🇮🇷: "..settings.lock_link.."\nΩ Lock flood 🇮🇷: "..settings.flood.."\nΩ Flood sensitivity 🇮🇷: "..NUM_MSG_MAX.."\nΩ Lock spam 🇮🇷: "..settings.lock_spam.."\nΩ Lock English 🇮🇷: "..settings.lock_english.."\nΩ Lock commands(Do not respond to members) 🇮🇷: "..cmd.."\nLock badwords 🇮🇷: "..settings.lock_fosh.."\nΩ Lock tag(@#) 🇮🇷: "..settings.lock_tag.."\nΩ Lock Member 🇮🇷: "..settings.lock_member.."\nΩ Lock RTL 🇮🇷: "..settings.lock_rtl.."\nΩ Lock Tgservice 🇮🇷: "..settings.lock_tgservice.."\nΩ Lock Bots 🇮🇷: "..settings.lock_bot.."\nΩ Lock sticker 🇮🇷: "..settings.lock_sticker.."\nΩ Lock fwd 🇮🇷: "..settings.lock_fwd.."\nΩ Public 🇮🇷: "..settings.public.."\nΩ Expire time 🇮🇷: "..expire.."\nΩ Strict settings(hardly securiy) 🇮🇷: "..settings.strict.."\nJoin us @OmeGaTeam\nBot : @OmeGaShield\nWriter : @RezaMnk</b>"
-  return text
+  return "<b>Ω🇮🇷 OmeGaShield Supergroup settings and security :\nΩ Lock links 🇮🇷: "..settings.lock_link.."\nΩ Lock flood 🇮🇷: "..settings.flood.."\nΩ Flood sensitivity 🇮🇷: "..NUM_MSG_MAX.."\nΩ Lock spam 🇮🇷: "..settings.lock_spam.."\nΩ Lock English 🇮🇷: "..settings.lock_english.."\nΩ Lock commands(Do not respond to members) 🇮🇷: "..cmd.."\nLock badwords 🇮🇷: "..settings.lock_fosh.."\nΩ Lock tag(@#) 🇮🇷: "..settings.lock_tag.."\nΩ Lock Member 🇮🇷: "..settings.lock_member.."\nΩ Lock RTL 🇮🇷: "..settings.lock_rtl.."\nΩ Lock Tgservice 🇮🇷: "..settings.lock_tgservice.."\nΩ Lock Bots 🇮🇷: "..settings.lock_bot.."\nΩ Lock sticker 🇮🇷: "..settings.lock_sticker.."\nΩ Lock fwd 🇮🇷: "..settings.lock_fwd.."\nΩ Public 🇮🇷: "..settings.public.."\nΩ Expire time 🇮🇷: "..expire.."\nΩ Strict settings(hardly securiy) 🇮🇷: "..settings.strict.."</b>"
 end
 
 local function promote_admin(receiver, member_username, user_id)
@@ -1400,23 +1402,23 @@ local function run(msg, matches)
 		end
 
 		if matches[1] == 'del' and is_momod(msg) then
-			if type(msg.reply_id) ~= "nil" then
+			if type(msg.) ~= "nil" then
 				local cbreply_extra = {
 					get_cmd = 'del',
 					msg = msg
 				}
 				delete_msg(msg.id, ok_cb, false)
-				get_message(msg.reply_id, get_message_callback, cbreply_extra)
+				get_message(msg., get_message_callback, cbreply_extra)
 			end
 		end
 
 		if matches[1] == 'block' and is_momod(msg) then
-			if type(msg.reply_id) ~= "nil" then
+			if type(msg.) ~= "nil" then
 				local cbreply_extra = {
 					get_cmd = 'channel_block',
 					msg = msg
 				}
-				get_message(msg.reply_id, get_message_callback, cbreply_extra)
+				get_message(msg., get_message_callback, cbreply_extra)
 			elseif matches[1] == 'block' and matches[2] and string.match(matches[2], '^%d+$') then
 				--[[local user_id = matches[2]
 				local channel_id = msg.to.id
@@ -1448,18 +1450,18 @@ local function run(msg, matches)
 		end
 
 		if matches[1] == 'id' then
-			if type(msg.reply_id) ~= "nil" and is_momod(msg) and not matches[2] then
+			if type(msg.) ~= "nil" and is_momod(msg) and not matches[2] then
 				local cbreply_extra = {
 					get_cmd = 'id',
 					msg = msg
 				}
-				get_message(msg.reply_id, get_message_callback, cbreply_extra)
-			elseif type(msg.reply_id) ~= "nil" and matches[2] == "from" and is_momod(msg) then
+				get_message(msg., get_message_callback, cbreply_extra)
+			elseif type(msg.) ~= "nil" and matches[2] == "from" and is_momod(msg) then
 				local cbreply_extra = {
 					get_cmd = 'idfrom',
 					msg = msg
 				}
-				get_message(msg.reply_id, get_message_callback, cbreply_extra)
+				get_message(msg., get_message_callback, cbreply_extra)
 			elseif msg.text:match("@[%a%d]") then
 				local cbres_extra = {
 					channelid = msg.to.id,
@@ -1559,12 +1561,12 @@ local function run(msg, matches)
 				if not is_support(msg.from.id) and not is_owner(msg) then
 					return
 				end
-			if type(msg.reply_id) ~= "nil" then
+			if type(msg.) ~= "nil" then
 				local cbreply_extra = {
 					get_cmd = 'setadmin',
 					msg = msg
 				}
-				setadmin = get_message(msg.reply_id, get_message_callback, cbreply_extra)
+				setadmin = get_message(msg., get_message_callback, cbreply_extra)
 			elseif matches[1] == 'setadmin' and matches[2] and string.match(matches[2], '^%d+$') then
 			--[[]	local receiver = get_receiver(msg)
 				local user_id = "user#id"..matches[2]
@@ -1595,12 +1597,12 @@ local function run(msg, matches)
 			if not is_support(msg.from.id) and not is_owner(msg) then
 				return
 			end
-			if type(msg.reply_id) ~= "nil" then
+			if type(msg.) ~= "nil" then
 				local cbreply_extra = {
 					get_cmd = 'demoteadmin',
 					msg = msg
 				}
-				demoteadmin = get_message(msg.reply_id, get_message_callback, cbreply_extra)
+				demoteadmin = get_message(msg., get_message_callback, cbreply_extra)
 			elseif matches[1] == 'demoteadmin' and matches[2] and string.match(matches[2], '^%d+$') then
 				local receiver = get_receiver(msg)
 				local user_id = "user#id"..matches[2]
@@ -1619,12 +1621,12 @@ local function run(msg, matches)
 		end
 
 		if matches[1] == 'setowner' and is_owner(msg) then
-			if type(msg.reply_id) ~= "nil" then
+			if type(msg.) ~= "nil" then
 				local cbreply_extra = {
 					get_cmd = 'setowner',
 					msg = msg
 				}
-				setowner = get_message(msg.reply_id, get_message_callback, cbreply_extra)
+				setowner = get_message(msg., get_message_callback, cbreply_extra)
 			elseif matches[1] == 'setowner' and matches[2] and string.match(matches[2], '^%d+$') then
 		--[[	local group_owner = data[tostring(msg.to.id)]['set_owner']
 				if group_owner then
@@ -1661,12 +1663,12 @@ local function run(msg, matches)
 			if not is_owner(msg) then
 				return "<code>Only owner/admin can promote</code>"
 			end
-			if type(msg.reply_id) ~= "nil" then
+			if type(msg.) ~= "nil" then
 				local cbreply_extra = {
 					get_cmd = 'promote',
 					msg = msg
 				}
-				promote = get_message(msg.reply_id, get_message_callback, cbreply_extra)
+				promote = get_message(msg., get_message_callback, cbreply_extra)
 			elseif matches[1] == 'promote' and matches[2] and string.match(matches[2], '^%d+$') then
 				local receiver = get_receiver(msg)
 				local user_id = "user#id"..matches[2]
@@ -1705,12 +1707,12 @@ local function run(msg, matches)
 			if not is_owner(msg) then
 				return "<code>Only owner/support/admin can promote</code>"
 			end
-			if type(msg.reply_id) ~= "nil" then
+			if type(msg.) ~= "nil" then
 				local cbreply_extra = {
 					get_cmd = 'demote',
 					msg = msg
 				}
-				demote = get_message(msg.reply_id, get_message_callback, cbreply_extra)
+				demote = get_message(msg., get_message_callback, cbreply_extra)
 			elseif matches[1] == 'demote' and matches[2] and string.match(matches[2], '^%d+$') then
 				local receiver = get_receiver(msg)
 				local user_id = "user#id"..matches[2]
@@ -2166,10 +2168,10 @@ local function run(msg, matches)
 			local chat_id = msg.to.id
 			local hash = "mute_user"..chat_id
 			local user_id = ""
-			if type(msg.reply_id) ~= "nil" then
+			if type(msg.) ~= "nil" then
 				local receiver = get_receiver(msg)
 				local get_cmd = "mute_user"
-				muteuser = get_message(msg.reply_id, get_message_callback, {receiver = receiver, get_cmd = get_cmd, msg = msg})
+				muteuser = get_message(msg., get_message_callback, {receiver = receiver, get_cmd = get_cmd, msg = msg})
 			elseif matches[1] == "muteuser" and matches[2] and string.match(matches[2], '^%d+$') then
 				local user_id = matches[2]
 				if is_muted_user(chat_id, user_id) then
