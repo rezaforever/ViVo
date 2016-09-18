@@ -1,72 +1,85 @@
-do
+-- Checks if bot was disabled on specific chat
+local function is_channel_disabled( receiver )
+	if not _config.disabled_channels then
+		return false
+	end
 
-  --Checks if bot was disabled on specific chat
-  local function is_channel_disabled(receiver)
-          if not _config.disabled_channels then
-                  return false
-          end
-          if _config.disabled_channels[receiver] == nil then
-                  return false
-          end
-    return _config.disabled_channels[receiver]
-  end
+	if _config.disabled_channels[receiver] == nil then
+		return false
+	end
 
-  local function enable_channel(receiver)
-          if not _config.disabled_channels then
-                  _config.disabled_channels = {}
-          end
-          if _config.disabled_channels[receiver] == nil then
-                  return 'Channel is not disabled'
-          end
-          _config.disabled_channels[receiver] = false
-          save_config()
-          return 'Channel re-enabled'
-  end
-
-  local function pre_process(msg)
-          --If sender is a moderator then re-enable the channel
-          if is_momod(msg) then
-            if msg.text == 'bot +' then
-              enable_channel(get_receiver(msg))
-            end
-          end
-    if is_channel_disabled(get_receiver(msg)) then
-        msg.text = ''
-    end
-          return msg
-  end
-
-  local function run(msg, matches)
-          -- Enable a channel
-          if matches[1] == '+' then
-                  return enable_channel(get_receiver(msg))
-          end
-          -- Disable a channel
-          if matches[1] == '-' then
-            if not _config.disabled_channels then
-                    _config.disabled_channels = {}
-            end
-            _config.disabled_channels[get_receiver(msg)] = true
-            save_config()
-            return 'Channel disabled'
-          end
-  end
-
-  return {
-          description = 'Plugin to manage channels. Enable or disable channel.',
-          usage = {
-      moderator = {
-                    ' !channel enable: enable current channel',
-                    ' !channel disable: disable current channel'
-      },
-    },
-          patterns = {
-                  "^[!/#]bot (+)$",
-                  "^[!/#]bot (-)$"
-    },
-          run = run,
-    moderated = true,
-          pre_process = pre_process
-  }
-
+  return _config.disabled_channels[receiver]
 end
+
+local function enable_channel(receiver)
+	if not _config.disabled_channels then
+		_config.disabled_channels = {}
+	end
+
+	if _config.disabled_channels[receiver] == nil then
+		return "<b>Im still on 😐</b>"
+	end
+	
+	_config.disabled_channels[receiver] = false
+
+	save_config()
+	return "<b>Hey , Im back again 😎</b>"
+end
+
+local function disable_channel( receiver )
+	if not _config.disabled_channels then
+		_config.disabled_channels = {}
+	end
+	
+	_config.disabled_channels[receiver] = true
+
+	save_config()
+	return "<b>Im off now , Dont worry i will back soon 😎</b>"
+end
+
+local function pre_process(msg)
+	local receiver = get_receiver(msg)
+	
+	-- If sender is moderator then re-enable the channel
+	--if is_sudo(msg) then
+	if is_owner(msg) then
+	  if msg.text == "/bot" or msg.text == "/Bot" or msg.text == "!bot" or msg.text == "!Bot" then
+	  
+	    enable_channel(receiver)
+	  end
+	end
+
+  if is_channel_disabled(receiver) then
+  	msg.text = ""
+  end
+
+	return msg
+end
+
+local function run(msg, matches)
+	local receiver = get_receiver(msg)
+	-- Enable a channel
+	
+	local hash = 'usecommands:'..msg.from.id..':'..msg.to.id
+    redis:incr(hash)
+	if not is_owner(msg) then
+	return '<b>This command is for owner or higher privilege 😐</b>'
+	end
+	if matches[1] == 'on' then
+		return enable_channel(receiver)
+	end
+	-- Disable a channel
+	if matches[1] == 'off' then
+		return disable_channel(receiver)
+	end
+end
+
+return {
+		patterns = {
+		"^[!/][Bb]ot (on)",
+		"^[!/][Bb]ot (off)" }, 
+	run = run,
+	--privileged = true,
+	moderated = true,
+	pre_process = pre_process
+}
